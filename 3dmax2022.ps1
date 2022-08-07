@@ -61,8 +61,8 @@ function WriteDistributedRenderingConfigs
     # Max 2022
     $pluginConfig2022 = "$env:LOCALAPPDATA\Autodesk\3dsMax\2022 - 64bit\ENU\en-US\plugcfg"
     #New-Item "$pluginConfig2022" -ItemType Directory -Force
-    $vraydr_content | Out-File "$pluginConfig2022\vray_dr.cfg" -Force -Encoding ASCII
-    $vrayrtdr_content | Out-File "$pluginConfig2022\vrayrt_dr.cfg" -Force -Encoding ASCII
+    #$vraydr_content | Out-File "$pluginConfig2022\vray_dr.cfg" -Force -Encoding ASCII
+    #$vrayrtdr_content | Out-File "$pluginConfig2022\vrayrt_dr.cfg" -Force -Encoding ASCII
 
     # We need to wait for vrayspawner or vray.exe to start before continuing
     Start-Sleep 30
