@@ -59,7 +59,7 @@ function WriteDistributedRenderingConfigs
     $vrayrtdr_content += "autostart_local_slave 0`r`n"
 
     # Max 2022
-    $pluginConfig2022 = "$env:LOCALAPPDATA\Autodesk\3dsMax\2022 - 64bit\ENU\en-US\plugcfg"
+    #$pluginConfig2022 = "$env:LOCALAPPDATA\Autodesk\3dsMax\2022 - 64bit\ENU\en-US\plugcfg"
     #New-Item "$pluginConfig2022" -ItemType Directory -Force
     #$vraydr_content | Out-File "$pluginConfig2022\vray_dr.cfg" -Force -Encoding ASCII
     #$vrayrtdr_content | Out-File "$pluginConfig2022\vrayrt_dr.cfg" -Force -Encoding ASCII
@@ -279,9 +279,9 @@ Else
     $max_exec = $env:ADSK_3DSMAX_x64_2022+ "3dsmaxcmd.exe"
 }
 
-Write-Host "Executing $max_exec -secure 0 $cameraParam $renderPresetFileParam $defaultArgumentsParam $additionalArgumentsParam -preRenderScript:`"$pre_render_script`" -start:$start -end:$end -outputName:`"$outputName`" $pathFileParam `"$sceneFile`""
+Write-Host "Executing $max_exec -secure off $cameraParam $renderPresetFileParam $defaultArgumentsParam $additionalArgumentsParam -start:$start -end:$end -outputName:`"$outputName`" $pathFileParam `"$sceneFile`""
 
-cmd.exe /c $max_exec -secure 0 $cameraParam $renderPresetFileParam $defaultArgumentsParam $additionalArgumentsParam -start:$start -end:$end -v:5 -outputName:`"$outputName`" $pathFileParam `"$sceneFile`" `>Max_frame.log 2`>`&1
+cmd.exe /c $max_exec -secure off $cameraParam $renderPresetFileParam $defaultArgumentsParam $additionalArgumentsParam -start:$start -end:$end -v:5 -outputName:`"$outputName`" $pathFileParam `"$sceneFile`" `>Max_frame.log 2`>`&1
 $result = $lastexitcode
 
 Write-Host "last exit code $result"
