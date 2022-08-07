@@ -95,8 +95,8 @@ if ($renderer -like "vray*")
     $pre_render_script_content += "if (indexVrayGPU == 1) then (r.V_Ray_settings.system_vrayLog_level = 4; r.V_Ray_settings.system_vrayLog_file = ""$vrayLogFile"")`r`n"
 	
     $pre_render_script_content += "indexVray6 = findString rendererName ""V_Ray_6_""`r`n"
-    $pre_render_script_content += "if (indexVray5 == 1 and r.output_splitgbuffer and r.output_splitfilename != """") then (fileName = ""$outputPath"" + (filenameFromPath r.output_splitfilename); r.output_splitfilename = fileName)`r`n"
-    $pre_render_script_content += "if (indexVray5 == 1 and r.output_saveRawFile and r.output_rawFileName != """") then (fileName = ""$outputPath"" + (filenameFromPath r.output_rawFileName); r.output_rawFileName = fileName)`r`n"       
+    $pre_render_script_content += "if (indexVray6 == 1 and r.output_splitgbuffer and r.output_splitfilename != """") then (fileName = ""$outputPath"" + (filenameFromPath r.output_splitfilename); r.output_splitfilename = fileName)`r`n"
+    $pre_render_script_content += "if (indexVray6 == 1 and r.output_saveRawFile and r.output_rawFileName != """") then (fileName = ""$outputPath"" + (filenameFromPath r.output_rawFileName); r.output_rawFileName = fileName)`r`n"       
 
     if (ParameterValueSet $irradianceMap)
     {
@@ -279,9 +279,9 @@ Else
     $max_exec = $env:ADSK_3DSMAX_x64_2022+ "3dsmaxcmd.exe"
 }
 
-Write-Host "Executing $max_exec -secure off $cameraParam $renderPresetFileParam $defaultArgumentsParam $additionalArgumentsParam -preRenderScript:`"$pre_render_script`" -start:$start -end:$end -outputName:`"$outputName`" $pathFileParam `"$sceneFile`""
+Write-Host "Executing $max_exec -secure 0 $cameraParam $renderPresetFileParam $defaultArgumentsParam $additionalArgumentsParam -preRenderScript:`"$pre_render_script`" -start:$start -end:$end -outputName:`"$outputName`" $pathFileParam `"$sceneFile`""
 
-cmd.exe /c $max_exec -secure off $cameraParam $renderPresetFileParam $defaultArgumentsParam $additionalArgumentsParam -preRenderScript:`"$pre_render_script`" -start:$start -end:$end -v:5 -outputName:`"$outputName`" $pathFileParam `"$sceneFile`" `>Max_frame.log 2`>`&1
+cmd.exe /c $max_exec -secure 0 $cameraParam $renderPresetFileParam $defaultArgumentsParam $additionalArgumentsParam -start:$start -end:$end -v:5 -outputName:`"$outputName`" $pathFileParam `"$sceneFile`" `>Max_frame.log 2`>`&1
 $result = $lastexitcode
 
 Write-Host "last exit code $result"
