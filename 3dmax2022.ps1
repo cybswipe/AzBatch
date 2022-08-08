@@ -279,9 +279,9 @@ Else
     $max_exec = $env:ADSK_3DSMAX_x64_2022+ "3dsmaxcmd.exe"
 }
 
-Write-Host "Executing $max_exec -secure off $cameraParam $renderPresetFileParam $defaultArgumentsParam $additionalArgumentsParam -start:$start -end:$end -outputName:`"$outputName`" $pathFileParam `"$sceneFile`""
+Write-Host "Executing $max_exec $cameraParam $renderPresetFileParam $defaultArgumentsParam $additionalArgumentsParam -start:$start -end:$end -outputName:`"$outputName`" $pathFileParam `"$sceneFile`""
 
-cmd.exe /c $max_exec -secure off $cameraParam $renderPresetFileParam $defaultArgumentsParam $additionalArgumentsParam -start:$start -end:$end -v:5 -outputName:`"$outputName`" $pathFileParam `"$sceneFile`" `>Max_frame.log 2`>`&1
+cmd.exe /c $max_exec $cameraParam $renderPresetFileParam $defaultArgumentsParam $additionalArgumentsParam -start:$start -end:$end -v:5 -outputName:`"$outputName`" $pathFileParam `"$sceneFile`" `>Max_frame.log 2`>`&1
 $result = $lastexitcode
 
 Write-Host "last exit code $result"
